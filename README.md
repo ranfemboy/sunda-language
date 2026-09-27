@@ -1,9 +1,12 @@
 # SundaPy 🐍
 
-Basa pamrograman anu ditulis nganggo **Basa Sunda**, tapi mesinna tetep Python.
-File `.sun` ditranspile (dirobah) heula jadi kode Python nu sah, terus dijalankeun.
+A tiny programming language that lets you write code using **Sundanese words**
+(a language from West Java, Indonesia) instead of English. Under the hood it's
+still Python — SundaPy just translates the words for you before running it.
 
-## Conto kode (`examples/conto.sun`)
+You don't need to know Python to try this. Just follow the steps below.
+
+## What code looks like (`examples/conto.sun`)
 
 ```
 gawe sapa(ngaran):
@@ -15,75 +18,68 @@ gawe sapa(ngaran):
 cetak(sapa("Sunda"))
 ```
 
-## Instalasi (lokal, tacan di-publish ka PyPI)
+Running it prints: `Wilujeng sumping, Sunda!`
 
-1. Pastikeun Python >= 3.8 geus kainstal (`python3 --version`).
-2. Clone/download repo ieu, terus asup ka foldernya:
-   ```bash
-   git clone https://github.com/USERNAME/sundapy.git
-   cd sundapy
-   ```
-3. Install dina mode "editable" (nu ngahasilkeun perintah `sunda`):
-   ```bash
-   pip install -e .
-   ```
-   > Di Linux/Mac nu ngagunakeun sistem Python, mun aya error "externally-managed-environment", tambahkeun `--break-system-packages`, atawa nganggo virtualenv:
-   > ```bash
-   > python3 -m venv venv
-   > source venv/bin/activate
-   > pip install -e .
-   > ```
+## How to install it
 
-## Ngagunakeun
+**Step 1 — Make sure Python is installed**
 
-Jalankeun langsung:
+Open your terminal and type:
+```bash
+python3 --version
+```
+If you see a version number (3.8 or higher), you're good. If not, download
+Python from [python.org](https://www.python.org/downloads/) first.
+
+**Step 2 — Get this project onto your computer**
+
+If you downloaded the folder as a zip, just unzip it and open a terminal
+inside that folder. If you're getting it from GitHub instead:
+```bash
+git clone https://github.com/ranfemboy/sunda-language.git
+cd sunda-language
+```
+
+**Step 3 — Install it**
+```bash
+pip install -e .
+```
+This creates a new command called `sunda` that you can use anywhere.
+
+> If you see an error mentioning "externally-managed-environment", just run:
+> ```bash
+> pip install -e . --break-system-packages
+> ```
+
+## How to use it
+
+Run the example program:
 ```bash
 sunda run examples/conto.sun
 ```
 
-Robah jadi file `.py` biasa (mun hoyong tempo hasil transpile-na):
+Want to write your own program? Create a new file ending in `.sun`
+(for example `mycode.sun`), write Sundanese code inside it using the word
+list below, then run:
 ```bash
-sunda compile examples/conto.sun -o conto.py
+sunda run mycode.sun
 ```
 
-## Kecap kunci nu geus disadiakeun
+## Word list (Sundanese → what it means)
 
-Tempo/robah dina `sundapy/keywords.py`. Sabagian conto:
+| Sundanese  | Meaning (like English) |
+|------------|-------------------------|
+| `lamun`    | if                      |
+| `sanes`    | else                    |
+| `salila`   | while                   |
+| `pikeun`   | for                     |
+| `gawe`     | def (make a function)   |
+| `balik`    | return                  |
+| `leres`    | True                    |
+| `salah`    | False                   |
+| `cetak`    | print                   |
+| `impor`    | import                  |
 
-| Sunda      | Python   |
-|------------|----------|
-| `lamun`    | `if`     |
-| `sanes`    | `else`   |
-| `salila`   | `while`  |
-| `pikeun`   | `for`    |
-| `gawe`     | `def`    |
-| `balik`    | `return` |
-| `leres`    | `True`   |
-| `salah`    | `False`  |
-| `cetak`    | `print`  |
-| `impor`    | `import` |
-
-Tinggal tambihan pasangan kecap-Sunda: kecap-Python di dictionary `KEYWORDS`
-mun hoyong nambahan kosakata.
-
-## Cara upload ka GitHub
-
-```bash
-cd sundapy
-git init
-git add .
-git commit -m "Rilis mimiti SundaPy"
-git branch -M main
-git remote add origin https://github.com/USERNAME/sundapy.git
-git push -u origin main
-```
-
-Ganti `USERNAME` jeung ngaran akun GitHub anjeun. Mun tacan aya repo di GitHub,
-jieun heula repo kosong (tanpa README) ngaliwatan tombol "New repository".
-
-## Kumaha ari cara gawe-na (transpiler)
-
-`sundapy/transpiler.py` maca source `.sun` maké modul `tokenize` bawaan
-Python — sanes ganti-string biasa (regex). Ku kituna, kecap anu aya di jero
-string (`"lamun ieu di jero string"`) atawa komentar teu bakal katukang robah,
-ngan kecap kunci nu bener-bener jadi token ngaran (NAME) anu dirobah.
+Want to add more Sundanese words? Open the file `sundapy/keywords.py` and
+add your own word on the left, matching it to the English/Python word on
+the right.
