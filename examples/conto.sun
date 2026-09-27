@@ -1,0 +1,17 @@
+gawe sapa(ngaran):
+    lamun ngaran == "":
+        balik "Wilujeng sumping!"
+    sanes:
+        balik "Wilujeng sumping, " + ngaran + "!"
+
+cetak(sapa("Sunda"))
+
+pikeun i dina rentang(5):
+    lamun i == 3:
+        eureun
+    cetak("Angka:", i)
+
+x = 10
+y = 20
+lamun x jeung y:
+    cetak("Duanana leres")
